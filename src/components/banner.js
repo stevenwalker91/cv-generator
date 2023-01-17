@@ -16,10 +16,20 @@ class Banner extends Component {
   render() {
     return (
       <div id="banner">
-        <img className="profile-pic" src={profilePic}></img>
+        <div className="image-container">
+          <div className="edit-pic-container">
+            <label htmlFor="profilePicInput">
+              <img className="profile-pic" id="profile-pic" src={profilePic}></img>
+              <span className="material-symbols-outlined profile-label">photo_camera</span>
+            </label>
+            <input type="file" id="profilePicInput" name="profilePicInput" />
+          </div>
+        </div>
+        
         <div id="name-container">
           <h1 id="name">Mohammed Smith</h1>
           <h2 id="profession">Senior Software Engineer</h2>
+          
         </div>
       </div>
     )
