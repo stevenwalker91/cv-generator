@@ -65,12 +65,12 @@
   left: 50%;
 }
 
-.image-container:hover .profile-label {
+.edit-pic-container:hover .profile-label {
   opacity: 1;
   cursor: pointer;
 }
 
-.image-container:hover .profile-pic {
+.edit-pic-container:hover .profile-pic {
   opacity: 0.75;
   cursor: pointer;
 }
