@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../App.css';
-import profilePic from '../assets/me.jpeg'
+import profilePic from '../assets/placeholder-image.jpeg';
+//import profilePic from '../assets/me.jpeg';
 
 
 class Banner extends Component {
