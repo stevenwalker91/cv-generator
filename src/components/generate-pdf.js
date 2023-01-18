@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../App.css';
 import { jsPDF } from "jspdf";
+import { Secular, Montserrat } from '../assets/fonts';
 
 class GeneratePDFButton extends Component {
   constructor(props) {
@@ -13,9 +14,11 @@ class GeneratePDFButton extends Component {
   }
 
   generatePDF = () => {
-    console.log('hello')
-
     const doc = new jsPDF();
+    doc.addFileToVFS('SecularOne-Regular.ttf', Secular)
+    doc.addFileToVFS('Montserrat-Regular.ttf', Montserrat)
+    doc.addFont('SecularOne-Regular.ttf', 'Secular One', 'normal')
+    doc.addFont('Montserrat-Regular.ttf', 'Montserrat', 'normal')
     const app = document.getElementById('app');
   
     doc.html(app, {
