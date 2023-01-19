@@ -118,6 +118,8 @@
 
 .updateableField:hover {
   cursor: pointer;
+  background-color: #d3d3d373;
+  border-radius: 5px;
 
 
 }
