@@ -23,7 +23,8 @@ class Banner extends Component {
   }
 
   handleLoseFocus = (event) => {
-    const stateToUpdate = `is${event.target.id.charAt(0).toUpperCase() + event.target.id.slice(1)}Editing`
+    const stateToUpdate = `is${event.target.name.charAt(0).toUpperCase() + event.target.name.slice(1)}Editing`
+    console.log(stateToUpdate)
     this.setState({
       [stateToUpdate]: false
     })
