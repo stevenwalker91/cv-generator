@@ -48,17 +48,22 @@ class Banner extends Component {
 
   handleUpdate = (event) => {
     const key = event.target.name;
-
     this.setState({
       [key]: event.target.value
     })
+  }
 
+  handleEnterKey = (event) => {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      event.target.blur();
+    }
   }
 
 
 
   render() {
-    const { name, role, updateFieldToShow, isNameEditing, isRoleEditing } = this.state;
+    const { name, role, isNameEditing, isRoleEditing, handleEnterKey} = this.state;
     return (
       <div className="outer-banner">
         <div id="banner">
@@ -71,8 +76,8 @@ class Banner extends Component {
           </div>
           <div id="name-container">
 
-            <ClickableField fieldName="name" value={name} edit={this.makeFieldEditable} loseFocus={this.handleLoseFocus} handleUpdate={this.handleUpdate} isEditing={isNameEditing} />
-            <ClickableField fieldName="role" value={role} edit={this.makeFieldEditable} loseFocus={this.handleLoseFocus} handleUpdate={this.handleUpdate} isEditing={isRoleEditing} />
+            <ClickableField fieldName="name" value={name} edit={this.makeFieldEditable} loseFocus={this.handleLoseFocus} handleUpdate={this.handleUpdate} isEditing={isNameEditing} handleEnter={this.handleEnterKey} />
+            <ClickableField fieldName="role" value={role} edit={this.makeFieldEditable} handleEnter={this.handleEnterKey}loseFocus={this.handleLoseFocus} handleUpdate={this.handleUpdate} isEditing={isRoleEditing} />
            
 
 
