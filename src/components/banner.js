@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import '../App.css';
-import profilePic from '../assets/hamish.jpg';
-import UpdateField from './update-field';
 import ClickableField from './clickable-field';
+import DisplayPicture from './display-picture';
 
 class Banner extends Component {
   constructor(props) {
@@ -16,34 +15,18 @@ class Banner extends Component {
     }
   }
 
-
   makeFieldEditable = (event) => {
-
-    if (event.target.id === 'name') {
-      this.setState({
-        isNameEditing: true
-      })
-    }
-
-    if (event.target.id === 'role') {
-      this.setState({
-        isRoleEditing: true
-      })
-    }
+    const stateToUpdate = `is${event.target.id.charAt(0).toUpperCase() + event.target.id.slice(1)}Editing`
+    this.setState({
+      [stateToUpdate]: true
+    })
   }
 
   handleLoseFocus = (event) => {
-    if(event.target.name === 'name') {
-      this.setState({
-        isNameEditing: false
-      })
-    }
-    if(event.target.name === 'role') {
-      this.setState({
-        isRoleEditing: false
-      })
-    }
-    
+    const stateToUpdate = `is${event.target.id.charAt(0).toUpperCase() + event.target.id.slice(1)}Editing`
+    this.setState({
+      [stateToUpdate]: false
+    })
   }
 
   handleUpdate = (event) => {
@@ -67,13 +50,7 @@ class Banner extends Component {
     return (
       <div className="outer-banner">
         <div id="banner">
-          <div className="edit-pic-container">
-            <label htmlFor="profilePicInput">
-              <img className="profile-pic" id="profile-pic" src={profilePic}></img>
-              <span className="material-symbols-outlined profile-label">photo_camera</span>
-            </label>
-            <input type="file" id="profilePicInput" name="profilePicInput" />
-          </div>
+          <DisplayPicture />
           <div id="name-container">
 
             <ClickableField fieldName="name" value={name} edit={this.makeFieldEditable} loseFocus={this.handleLoseFocus} handleUpdate={this.handleUpdate} isEditing={isNameEditing} handleEnter={this.handleEnterKey} />
