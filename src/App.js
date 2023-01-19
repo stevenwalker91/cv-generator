@@ -21,12 +21,12 @@ class App extends Component {
   render() {
     return (
       <div>
-        <GeneratePDFButton />
         <div id="app" className="app">
           <Banner />
           <Sidebar />
           <Main />
         </div>
+        <GeneratePDFButton />
       </div>
     )
   }

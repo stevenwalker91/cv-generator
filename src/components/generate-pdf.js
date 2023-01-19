@@ -30,7 +30,7 @@ class GeneratePDFButton extends Component {
         useCORS: true
       },
       callback: function (doc) {
-        doc.save();
+        doc.save('cv.pdf');
       }
     
     })
