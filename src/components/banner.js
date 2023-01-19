@@ -24,7 +24,6 @@ class Banner extends Component {
 
   handleLoseFocus = (event) => {
     const stateToUpdate = `is${event.target.name.charAt(0).toUpperCase() + event.target.name.slice(1)}Editing`
-    console.log(stateToUpdate)
     this.setState({
       [stateToUpdate]: false
     })
@@ -56,9 +55,7 @@ class Banner extends Component {
 
             <ClickableField fieldName="name" value={name} edit={this.makeFieldEditable} loseFocus={this.handleLoseFocus} handleUpdate={this.handleUpdate} isEditing={isNameEditing} handleEnter={this.handleEnterKey} />
             <ClickableField fieldName="role" value={role} edit={this.makeFieldEditable} handleEnter={this.handleEnterKey}loseFocus={this.handleLoseFocus} handleUpdate={this.handleUpdate} isEditing={isRoleEditing} />
-           
-
-
+          
           </div>
         </div>
       </div>
