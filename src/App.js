@@ -7,21 +7,36 @@ import Page from './components/page';
 class App extends Component {
   constructor(props) {
     super(props)
-
     this.state = {
+      sectionHeights: {}
     }
+  }
+
+  updateSectionSize = (index, size) => {
+    this.setState(prevState => ({
+      sectionHeights: {
+        ...prevState.sectionHeights,
+        [index]: size
+      }
+    }))
   }
 
   sidebarContentSections = [
     <ContentSection
       sectionTitle="Personal Summary"
       defaultValue="<p>Some text</p>"
-      key="1"
+      id="summaryContent"
+      key={0}
+      updateSectionSize={this.updateSectionSize}
+      index={0}
     />,
     <ContentSection
       sectionTitle="Skills"
       defaultValue="<ul><li>a list</li></ul>"
-      key="2"
+      id="skillsContent"
+      key={1}
+      updateSectionSize={this.updateSectionSize}
+      index={1}
     />
   ]
 
