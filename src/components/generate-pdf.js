@@ -15,7 +15,6 @@ class GeneratePDFButton extends Component {
 
   //hacky approach to manually remove the margin between pages when generating PDF
   toggleMargin = async () => {
-    console.log('running')
     const pages = document.querySelectorAll('.page');
 
     for (const page of pages) {

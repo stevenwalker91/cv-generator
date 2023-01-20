@@ -16,10 +16,12 @@ class App extends Component {
     <ContentSection
       sectionTitle="Personal Summary"
       defaultValue="<p>Some text</p>"
+      key="1"
     />,
     <ContentSection
       sectionTitle="Skills"
       defaultValue="<ul><li>a list</li></ul>"
+      key="2"
     />
   ]
 

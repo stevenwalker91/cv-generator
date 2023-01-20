@@ -26,7 +26,6 @@ class ContentSection extends Component {
   render(){
 
     const { defaultValue, sectionTitle  } = this.props;
-    const { value } = this.state;
 
     return (
       <div className="sidebar-section">
@@ -39,7 +38,6 @@ class ContentSection extends Component {
           onChange={ ( event, editor ) => {
               const data = editor.getData();
               this.handleChange(data);
-              console.log(Array.from( editor.ui.componentFactory.names() ))
           } }
          />
 

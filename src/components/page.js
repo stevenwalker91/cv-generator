@@ -23,7 +23,7 @@ class Page extends Component {
           {pageNumber === '1' && <Banner /> }
           <Sidebar page={pageNumber}>
             {sidebarSections}
-          </Sidebar>
+          </Sidebar >
           <Main />
       </div>
     )
