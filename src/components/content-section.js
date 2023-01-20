@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import '../App.css';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
-import BalloonEditor from '@ckeditor/ckeditor5-build-balloon';
+import InlineEditor from '@ckeditor/ckeditor5-build-inline';
 
 const editorConfig = {
-  toolbar: [ 'undo', 'redo', 'bold', 'italic', 'bulletedList', 'numberedList' ]
+  toolbar: [ 'undo', 'redo', '|', 'bold', 'italic', '|', 'bulletedList', 'numberedList']
 }
 
 
@@ -33,12 +33,13 @@ class ContentSection extends Component {
         <h3>{ sectionTitle }</h3>
         
         <CKEditor
-          editor={ BalloonEditor }
+          editor={ InlineEditor }
           config={ editorConfig }
           data={defaultValue}
           onChange={ ( event, editor ) => {
               const data = editor.getData();
               this.handleChange(data);
+              console.log(Array.from( editor.ui.componentFactory.names() ))
           } }
          />
 
