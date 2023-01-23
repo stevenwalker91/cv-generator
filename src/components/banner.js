@@ -17,10 +17,8 @@ class Banner extends Component {
         <div id="banner">
           <DisplayPicture />
           <div id="name-container">
-
             <ClickableField fieldName="name" fieldType="h1" defaultValue="Hamish Walker" />
             <ClickableField fieldName="role" fieldType="h2" defaultValue="Loyal Companion" />
-          
           </div>
         </div>
       </div>

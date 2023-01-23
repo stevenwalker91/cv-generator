@@ -4,14 +4,6 @@ import '../App.css';
 
 
 class Sidebar extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-
-    }
-
-  }
 
   render() {
     const {page} = this.props;

@@ -10,11 +10,8 @@ class App extends Component {
     this.state = {
       sidebarSectionHeights: {},
       breakpoints: [0],
-
     }
   }
-
-
 
   updateSectionSize = (index, size) => {
 
@@ -26,7 +23,6 @@ class App extends Component {
       },
       breakpoints: breaks
     }))
-
   }
 
   getSidebarBreakpoints = () => {

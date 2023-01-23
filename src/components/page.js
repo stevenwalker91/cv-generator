@@ -22,7 +22,6 @@ class Page extends Component {
               handleLoseFocus={handleLoseFocus}
               handleUpdate={handleUpdate}
               handleEnterKey={handleEnterKey}
-
             /> }
           <Sidebar page={pageNumber}>
             {sidebarSections}
