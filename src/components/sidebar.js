@@ -19,6 +19,7 @@ class Sidebar extends Component {
     return (
       <div className={page === 1 ? "sidebar sidebar-page-one" : "sidebar "}>
         {this.props.children}
+
       </div>
     )
   }

@@ -9,7 +9,39 @@ class App extends Component {
     super(props)
     this.state = {
       sidebarSectionHeights: {},
-      breakpoints: [0]
+      breakpoints: [0],
+      name: 'Hamish Walker',
+      role: 'Loyal Companion & Best Friend',
+      isNameEditing: false,
+      isRoleEditing: false
+    }
+  }
+
+  makeFieldEditable = (event) => {
+    const stateToUpdate = `is${event.target.id.charAt(0).toUpperCase() + event.target.id.slice(1)}Editing`
+    this.setState({
+      [stateToUpdate]: true
+    })
+  }
+
+  handleLoseFocus = (event) => {
+    const stateToUpdate = `is${event.target.name.charAt(0).toUpperCase() + event.target.name.slice(1)}Editing`
+    this.setState({
+      [stateToUpdate]: false
+    })
+  }
+
+  handleUpdate = (event) => {
+    const key = event.target.name;
+    this.setState({
+      [key]: event.target.value
+    })
+  }
+
+  handleEnterKey = (event) => {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      event.target.blur();
     }
   }
 
@@ -27,8 +59,6 @@ class App extends Component {
   }
 
   getSidebarBreakpoints = () => {
-
-
     let allowedHeight = 0;
     let page = 1
 
@@ -40,13 +70,14 @@ class App extends Component {
       if (page === 1) {
         allowedHeight = 21; //23
       } else {
-        allowedHeight = 28;
+        allowedHeight = 25;
       }
 
       totalHeight += this.state.sidebarSectionHeights[key]
       if (totalHeight > allowedHeight) {
         breakpoints.push(parseInt(key))
-        page++;
+        page = page + 1;
+        totalHeight = 0;
       }
     }
     return breakpoints;
@@ -94,17 +125,28 @@ class App extends Component {
       updateSectionSize={this.updateSectionSize}
       index={4}
     />,
+    <ContentSection
+      sectionTitle="Contact Details"
+      defaultValue="<p>Steven</p>"
+      id="testContent"
+      key={5}
+      updateSectionSize={this.updateSectionSize}
+      index={5}
+    >
+      <h1>Steven</h1>
+
+    </ContentSection>,
   ]
 
 
   render() {
+    const { name, role, isNameEditing, isRoleEditing } = this.state
 
     const breakpoints = this.state.breakpoints;
     const pages = breakpoints.map((breakpoint, index) => {
       const start = breakpoint
 
       let end = breakpoints[index + 1];
-      console.log(breakpoint)
       if (!end) {
         end = breakpoint + 10;
       }
@@ -113,6 +155,14 @@ class App extends Component {
         <Page
           key={index + 1}
           pageNumber={index + 1}
+          name={name}
+          role={role}
+          isNameEditing={isNameEditing}
+          isRoleEditing={isRoleEditing}
+          makeFieldEditable={this.makeFieldEditable}
+          handleLoseFocus={this.handleLoseFocus}
+          handleUpdate={this.handleUpdate}
+          handleEnterKey={this.handleEnterKey}
           sidebarSections={this.sidebarContentSections.filter(section => {
             return section.props.index >= start && section.props.index < end //
           })}

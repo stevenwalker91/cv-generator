@@ -31,30 +31,44 @@ class ContentSection extends Component {
     });
   }
 
+  editableSection = (sectionTitle, defaultValue) => {
+    return (
+      <div className="sidebar-section" ref={this.ref}>
+          <h3>{ sectionTitle }</h3>
+          <CKEditor
+            editor={ InlineEditor }
+            config={ editorConfig }
+            data={defaultValue}
+            onReady={ editor => {
+              // You can store the "editor" and use when it is needed.
+              const data = editor.getData();
+              this.handleChange(data);
+          } }
+            onChange={ ( event, editor ) => {
+                const data = editor.getData();
+                this.handleChange(data);
+            } }
+          />
+      </div>
+    )
+  }
+
+  addressSection = (sectionTitle) => {
+    return (
+      <div className="sidebar-section" ref={this.ref}>
+        <h3>{ sectionTitle }</h3>
+
+
+      </div>
+    )
+  }
+
   render(){
     const { height } = this.state
     const { defaultValue, sectionTitle } = this.props;
     return (
-      <div className="sidebar-section" ref={this.ref}>
-        <h3>{ sectionTitle }</h3>
-        
-        <CKEditor
-          editor={ InlineEditor }
-          config={ editorConfig }
-          data={defaultValue}
-          onReady={ editor => {
-            // You can store the "editor" and use when it is needed.
-            const data = editor.getData();
-            this.handleChange(data);
-        } }
-          onChange={ ( event, editor ) => {
-              const data = editor.getData();
-              this.handleChange(data);
-          } }
+       this.editableSection(sectionTitle, defaultValue)
 
-         />
-
-      </div>
     )
   }
 }
