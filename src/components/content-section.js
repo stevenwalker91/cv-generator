@@ -17,16 +17,19 @@ class ContentSection extends Component {
     }
   }
 
+  pxToCm = (px) => {
+    const dpi = 96;
+    return (px / dpi) * 2.54;
+  }
+
   handleChange = (input) => {
     this.setState({
       value: input,
       height: this.ref.current.clientHeight
     },()=>{
-        this.props.updateSectionSize(this.props.index, this.ref.current.clientHeight)
+        this.props.updateSectionSize(this.props.index, this.pxToCm(this.ref.current.clientHeight))
     });
   }
-
-
 
   render(){
     const { height } = this.state
@@ -39,6 +42,11 @@ class ContentSection extends Component {
           editor={ InlineEditor }
           config={ editorConfig }
           data={defaultValue}
+          onReady={ editor => {
+            // You can store the "editor" and use when it is needed.
+            const data = editor.getData();
+            this.handleChange(data);
+        } }
           onChange={ ( event, editor ) => {
               const data = editor.getData();
               this.handleChange(data);

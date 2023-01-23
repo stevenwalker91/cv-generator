@@ -20,7 +20,7 @@ class Page extends Component {
   
     return (
       <div className="page">
-          {pageNumber === '1' && <Banner /> }
+          {pageNumber === 1 && <Banner /> }
           <Sidebar page={pageNumber}>
             {sidebarSections}
           </Sidebar >
