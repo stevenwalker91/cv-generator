@@ -40,37 +40,19 @@ class ClickableField extends Component {
     }
   }
 
-  getHeaderOne = (fieldName, value, isEditing) => {
-
-    return (
-      <div className="wrapper">
-        {!isEditing && <h1 id={fieldName} onClick={(event) => this.makeFieldEditable(event)} className="updateableField">{value}</h1> }
-        {isEditing && <input value={value} className="h1" name={fieldName} onKeyUp={(event) => this.handleEnterKey(event)}onChange={(event) => this.handleUpdate(event)} onBlur={(event) => this.handleLoseFocus(event)} autoFocus></input> }
-      </div>
-    )
-  }
-
-  getHeaderTwo = (fieldName, value, isEditing) => {
-    return (
-      <div className="wrapper">
-        {!isEditing && <h2 id={fieldName} onClick={(event) => this.makeFieldEditable(event)} className="updateableField">{value}</h2> }
-        {isEditing && <input value={value} className="h2" name={fieldName} onKeyUp={(event) => this.handleEnterKey(event)}onChange={(event) => this.handleUpdate(event)} onBlur={(event) => this.handleLoseFocus(event)} autoFocus></input> }
-      </div>
-    )
-  }
 
   render() {
     const { fieldName, fieldType } = this.props;
     const { value, isEditing } = this.state
+    const DynamicTag = fieldType;
 
-    if (fieldType==="h1") {
-      return this.getHeaderOne(fieldName, value, isEditing);
-    }
 
-    if (fieldType==="h2") {
-      return this.getHeaderTwo(fieldName, value, isEditing);
-    }
-
+    return (
+      <div className="wrapper">
+        {!isEditing && <DynamicTag id={fieldName} onClick={(event) => this.makeFieldEditable(event)} className="updateableField">{value}</DynamicTag> }
+        {isEditing && <input value={value} className={DynamicTag}  name={fieldName} onKeyUp={(event) => this.handleEnterKey(event)}onChange={(event) => this.handleUpdate(event)} onBlur={(event) => this.handleLoseFocus(event)} autoFocus></input> }
+      </div>
+    )
 
 
     
