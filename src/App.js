@@ -10,40 +10,11 @@ class App extends Component {
     this.state = {
       sidebarSectionHeights: {},
       breakpoints: [0],
-      name: 'Hamish Walker',
-      role: 'Loyal Companion & Best Friend',
-      isNameEditing: false,
-      isRoleEditing: false
+
     }
   }
 
-  makeFieldEditable = (event) => {
-    const stateToUpdate = `is${event.target.id.charAt(0).toUpperCase() + event.target.id.slice(1)}Editing`
-    this.setState({
-      [stateToUpdate]: true
-    })
-  }
 
-  handleLoseFocus = (event) => {
-    const stateToUpdate = `is${event.target.name.charAt(0).toUpperCase() + event.target.name.slice(1)}Editing`
-    this.setState({
-      [stateToUpdate]: false
-    })
-  }
-
-  handleUpdate = (event) => {
-    const key = event.target.name;
-    this.setState({
-      [key]: event.target.value
-    })
-  }
-
-  handleEnterKey = (event) => {
-    if (event.keyCode === 13) {
-      event.preventDefault();
-      event.target.blur();
-    }
-  }
 
   updateSectionSize = (index, size) => {
 
@@ -155,14 +126,6 @@ class App extends Component {
         <Page
           key={index + 1}
           pageNumber={index + 1}
-          name={name}
-          role={role}
-          isNameEditing={isNameEditing}
-          isRoleEditing={isRoleEditing}
-          makeFieldEditable={this.makeFieldEditable}
-          handleLoseFocus={this.handleLoseFocus}
-          handleUpdate={this.handleUpdate}
-          handleEnterKey={this.handleEnterKey}
           sidebarSections={this.sidebarContentSections.filter(section => {
             return section.props.index >= start && section.props.index < end //
           })}

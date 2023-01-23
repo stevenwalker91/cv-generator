@@ -10,7 +10,7 @@ class Banner extends Component {
   }
 
   render() {
-    const {name, role, isNameEditing, isRoleEditing, makeFieldEditable, handleUpdate, handleLoseFocus, handleEnterKey } = this.props
+
 
     return (
       <div className="outer-banner">
@@ -18,8 +18,8 @@ class Banner extends Component {
           <DisplayPicture />
           <div id="name-container">
 
-            <ClickableField fieldName="name" value={name} edit={makeFieldEditable} loseFocus={handleLoseFocus} handleUpdate={handleUpdate} isEditing={isNameEditing} handleEnter={handleEnterKey} />
-            <ClickableField fieldName="role" value={role} edit={makeFieldEditable} handleEnter={handleEnterKey}loseFocus={handleLoseFocus} handleUpdate={handleUpdate} isEditing={isRoleEditing} />
+            <ClickableField fieldName="name" fieldType="h1" defaultValue="Hamish Walker" />
+            <ClickableField fieldName="role" fieldType="h2" defaultValue="Loyal Companion" />
           
           </div>
         </div>
