@@ -15,21 +15,16 @@ class ContentSection extends Component {
       value: '',
       height: 0
     }
+
   }
 
-  pxToCm = (px) => {
-    const dpi = 96;
-    return (px / dpi) * 2.54;
+  passHandlerToParent = (data, index) => {
+    if (this.ref.current) {
+      this.props.handleChange(data, index, this.ref.current.clientHeight)
   }
 
-  handleChange = (input) => {
-    this.setState({
-      value: input,
-      height: this.ref.current.clientHeight
-    },()=>{
-        this.props.updateSectionSize(this.props.index, this.pxToCm(this.ref.current.clientHeight))
-    });
   }
+
 
   editableSection = (sectionTitle, defaultValue) => {
     return (
@@ -39,14 +34,14 @@ class ContentSection extends Component {
             editor={ InlineEditor }
             config={ editorConfig }
             data={defaultValue}
-            onReady={ editor => {
+            onReady={ (editor) => {
               // You can store the "editor" and use when it is needed.
               const data = editor.getData();
-              this.handleChange(data);
+              this.passHandlerToParent(data, this.props.index);
           } }
             onChange={ ( event, editor ) => {
                 const data = editor.getData();
-                this.handleChange(data);
+                this.passHandlerToParent(data, this.props.index);
             } }
           />
       </div>

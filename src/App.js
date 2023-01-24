@@ -10,11 +10,11 @@ class App extends Component {
     this.state = {
       sidebarSectionHeights: {},
       breakpoints: [0],
+      sidebarSectionValues: { 0: 'Steven', 1: 'Test', 2: '', 3: '', 4: '' }
     }
   }
 
   updateSectionSize = (index, size) => {
-
     const breaks = this.getSidebarBreakpoints();
     this.setState(prevState => ({
       sidebarSectionHeights: {
@@ -24,6 +24,22 @@ class App extends Component {
       breakpoints: breaks
     }))
   }
+
+  pxToCm = (px) => {
+    const dpi = 96;
+    return (px / dpi) * 2.54;
+  }
+
+  handleChange = (data, index, height) => {
+    this.setState(prevState => ({
+      sidebarSectionValues: {
+        ...prevState.sidebarSectionValues,
+        [index]: data
+      }
+    }))
+    this.updateSectionSize(index, this.pxToCm(height))
+  }
+
 
   getSidebarBreakpoints = () => {
     let allowedHeight = 0;
@@ -51,62 +67,56 @@ class App extends Component {
   }
 
 
-  sidebarContentSections = [
-    <ContentSection
-      sectionTitle="Personal Summary"
-      defaultValue="<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>"
-      id="summaryContent"
-      key={0}
-      updateSectionSize={this.updateSectionSize}
-      index={0}
-    />,
-    <ContentSection
-      sectionTitle="Skills"
-      defaultValue="<ul><li>a list</li></ul>"
-      id="skillsContent"
-      key={1}
-      updateSectionSize={this.updateSectionSize}
-      index={1}
-    />,
-    <ContentSection
-      sectionTitle="Personal Summary"
-      defaultValue="<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>"
-      id="summaryContent"
-      key={2}
-      updateSectionSize={this.updateSectionSize}
-      index={2}
-    />,
-    <ContentSection
-      sectionTitle="Personal Summary"
-      defaultValue="<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>"
-      id="summaryContent"
-      key={3}
-      updateSectionSize={this.updateSectionSize}
-      index={3}
-    />,
-    <ContentSection
-      sectionTitle="Personal Summary"
-      defaultValue="<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>"
-      id="summaryContent"
-      key={4}
-      updateSectionSize={this.updateSectionSize}
-      index={4}
-    />,
-    <ContentSection
-      sectionTitle="Contact Details"
-      defaultValue="<p>Steven</p>"
-      id="testContent"
-      key={5}
-      updateSectionSize={this.updateSectionSize}
-      index={5}
-    >
-      <h1>Steven</h1>
-
-    </ContentSection>,
-  ]
-
 
   render() {
+    const sidebarContentSections = [
+      <ContentSection
+        sectionTitle="Personal Summary"
+        defaultValue={this.state.sidebarSectionValues[0]}
+        key={0}
+        updateSectionSize={this.updateSectionSize}
+        index={0}
+        handleChange={this.handleChange}
+      />,
+      <ContentSection
+        sectionTitle="Skills"
+        defaultValue={this.state.sidebarSectionValues[1]}
+        id="skillsContent"
+        key={1}
+        updateSectionSize={this.updateSectionSize}
+        index={1}
+        handleChange={this.handleChange}
+      />,
+      <ContentSection
+        sectionTitle="Personal Summary"
+        defaultValue={this.state.sidebarSectionValues[2]}
+        id="summaryContent"
+        key={2}
+        updateSectionSize={this.updateSectionSize}
+        index={2}
+        handleChange={this.handleChange}
+      />,
+      <ContentSection
+        sectionTitle="Personal Summary"
+        defaultValue={this.state.sidebarSectionValues[3]}
+        id="summaryContent"
+        key={3}
+        updateSectionSize={this.updateSectionSize}
+        index={3}
+        handleChange={this.handleChange}
+      />,
+      <ContentSection
+        sectionTitle="Personal Summary"
+        defaultValue={this.state.sidebarSectionValues[4]}
+        id="summaryContent"
+        key={4}
+        updateSectionSize={this.updateSectionSize}
+        index={4}
+        handleChange={this.handleChange}
+      />,
+
+    ]
+
     const { name, role, isNameEditing, isRoleEditing } = this.state
 
     const breakpoints = this.state.breakpoints;
@@ -122,7 +132,7 @@ class App extends Component {
         <Page
           key={index + 1}
           pageNumber={index + 1}
-          sidebarSections={this.sidebarContentSections.filter(section => {
+          sidebarSections={sidebarContentSections.filter(section => {
             return section.props.index >= start && section.props.index < end //
           })}
         />
