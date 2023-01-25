@@ -32,12 +32,6 @@
             {
                 "ignoreNonDOM": true
             }
-        ],
-        "import/no-extraneous-dependencies": [
-            "error",
-            {
-                "devDepencies": false
-            }
         ]
     }
 }

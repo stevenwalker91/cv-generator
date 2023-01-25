@@ -1,9 +1,11 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React, { Component } from 'react';
 import '../App.css';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import InlineEditor from '@ckeditor/ckeditor5-build-inline';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+import { faPhone, faPaperPlane, faLocationDot } from '@fortawesome/free-solid-svg-icons';
+import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
 
 const editorConfig = {
   toolbar: ['undo', 'redo', '|', 'bold', 'italic', '|', 'bulletedList', 'numberedList'],
@@ -77,8 +79,22 @@ class ContentSection extends Component {
     const div = (
       <div className="sidebar-section" ref={this.ref} onChange={() => this.handleAddressChange(index)}>
         <h3>{sectionTitle}</h3>
-        <FontAwesomeIcon icon={faCoffee} size="lg" />
-        {children}
+        <div className="contact-container">
+          <FontAwesomeIcon icon={faPhone} size="m" />
+          {children[0]}
+        </div>
+        <div className="contact-container">
+          <FontAwesomeIcon icon={faPaperPlane} size="m" />
+          {children[1]}
+        </div>
+        <div className="contact-container">
+          <FontAwesomeIcon icon={faLocationDot} size="m" />
+          {children[2]}
+        </div>
+        <div className="contact-container">
+          <FontAwesomeIcon icon={faLinkedin} size="m" />
+          {children[3]}
+        </div>
 
       </div>
     );

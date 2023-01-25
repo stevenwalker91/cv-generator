@@ -47,7 +47,6 @@
   content: " ";
   position: absolute;
   bottom: 100%;
-  /* At the bottom of the tooltip */
   left: 50%;
   margin-left: -5px;
   border-width: 5px;
@@ -199,6 +198,7 @@ textarea {
   width: 100%;
 }
 
+
 .ck {
   padding: 0px !important;
 }
@@ -216,4 +216,28 @@ ul {
 .test {
   background-color: black;
   height: 40cm;
+}
+
+.contact-container {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  padding: 5px;
+}
+
+.wrapper {
+  width: 100%;
+}
+
+.contact-container>.wrapper>p,
+.contact-container>.wrapper>input {
+  font-size: 13px;
+  background: none;
+  color: white;
+  width: 100%;
+}
+
+input:focus {
+  border: none;
+
 }

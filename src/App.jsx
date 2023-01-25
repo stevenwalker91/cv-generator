@@ -26,6 +26,7 @@ class App extends Component {
       phone: '077123456122',
       email: 'user@test.com',
       address: '26 Test Street, Testville, TT1 2DE',
+      linkedin: 'linkedin.com/testuser',
     };
   }
 
@@ -83,7 +84,7 @@ class App extends Component {
 
   render() {
     const {
-      sidebarSectionValues, phone, email, address, breakpoints,
+      sidebarSectionValues, phone, email, address, breakpoints, linkedin,
     } = this.state;
     const sidebarContentSections = [
       <ContentSection
@@ -125,6 +126,7 @@ class App extends Component {
         <ClickableField fieldName="phone" fieldType="p" defaultValue={phone} handleChange={this.handleFieldChange} />
         <ClickableField fieldName="email" fieldType="p" defaultValue={email} handleChange={this.handleFieldChange} />
         <ClickableField fieldName="address" fieldType="p" defaultValue={address} handleChange={this.handleFieldChange} />
+        <ClickableField fieldName="linkedin" fieldType="p" defaultValue={linkedin} handleChange={this.handleFieldChange} />
       </ContentSection>,
 
     ];
