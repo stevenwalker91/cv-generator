@@ -10,8 +10,13 @@ class Main extends Component {
   }
 
   render() {
+    const { page, children } = this.props;
     return (
-      <div className="main-content" />
+      <div className={page === 1 ? 'main-content main-content-page-one' : 'main-content '}>
+        <h3>Employment History</h3>
+        {children}
+      </div>
+
     );
   }
 }

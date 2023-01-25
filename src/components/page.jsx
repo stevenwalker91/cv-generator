@@ -43,7 +43,7 @@ class Page extends Component {
         <Sidebar page={pageNumber}>
           {sidebarSections}
         </Sidebar>
-        <Main />
+        <Main page={pageNumber} />
       </div>
     );
   }

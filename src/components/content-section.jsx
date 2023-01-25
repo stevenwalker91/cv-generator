@@ -11,7 +11,7 @@ const editorConfig = {
   toolbar: ['undo', 'redo', '|', 'bold', 'italic', '|', 'bulletedList', 'numberedList'],
 };
 
-class ContentSection extends Component {
+class SidebarSection extends Component {
   constructor(props) {
     super(props);
     this.ref = React.createRef();
@@ -80,19 +80,19 @@ class ContentSection extends Component {
       <div className="sidebar-section" ref={this.ref} onChange={() => this.handleAddressChange(index)}>
         <h3>{sectionTitle}</h3>
         <div className="contact-container">
-          <FontAwesomeIcon icon={faPhone} size="m" />
+          <FontAwesomeIcon icon={faPhone} />
           {children[0]}
         </div>
         <div className="contact-container">
-          <FontAwesomeIcon icon={faPaperPlane} size="m" />
+          <FontAwesomeIcon icon={faPaperPlane} />
           {children[1]}
         </div>
         <div className="contact-container">
-          <FontAwesomeIcon icon={faLocationDot} size="m" />
+          <FontAwesomeIcon icon={faLocationDot} />
           {children[2]}
         </div>
         <div className="contact-container">
-          <FontAwesomeIcon icon={faLinkedin} size="m" />
+          <FontAwesomeIcon icon={faLinkedin} />
           {children[3]}
         </div>
 
@@ -114,4 +114,4 @@ class ContentSection extends Component {
   }
 }
 
-export default ContentSection;
+export default SidebarSection;

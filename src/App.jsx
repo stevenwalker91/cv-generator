@@ -5,7 +5,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import GeneratePDFButton from './components/generate-pdf';
-import ContentSection from './components/content-section';
+import SidebarSection from './components/content-section';
 import Page from './components/page';
 import ClickableField from './components/clickable-field';
 
@@ -27,6 +27,7 @@ class App extends Component {
       email: 'user@test.com',
       address: '26 Test Street, Testville, TT1 2DE',
       linkedin: 'linkedin.com/testuser',
+      employmentHistory: [],
     };
   }
 
@@ -87,7 +88,7 @@ class App extends Component {
       sidebarSectionValues, phone, email, address, breakpoints, linkedin,
     } = this.state;
     const sidebarContentSections = [
-      <ContentSection
+      <SidebarSection
         sectionTitle="Personal Summary"
         defaultValue={sidebarSectionValues[0]}
         key={0}
@@ -96,7 +97,7 @@ class App extends Component {
         handleChange={this.handleSectionChange}
         type="editable-section"
       />,
-      <ContentSection
+      <SidebarSection
         sectionTitle="Skills"
         defaultValue={sidebarSectionValues[1]}
         id="skillsContent"
@@ -106,7 +107,7 @@ class App extends Component {
         handleChange={this.handleSectionChange}
         type="editable-section"
       />,
-      <ContentSection
+      <SidebarSection
         sectionTitle="Accreditation"
         defaultValue={sidebarSectionValues[2]}
         id="summaryContent"
@@ -116,7 +117,7 @@ class App extends Component {
         handleChange={this.handleSectionChange}
         type="editable-section"
       />,
-      <ContentSection
+      <SidebarSection
         sectionTitle="Contact Details"
         key={3}
         updateSectionSize={this.updateSectionSize}
@@ -127,7 +128,7 @@ class App extends Component {
         <ClickableField fieldName="email" fieldType="p" defaultValue={email} handleChange={this.handleFieldChange} />
         <ClickableField fieldName="address" fieldType="p" defaultValue={address} handleChange={this.handleFieldChange} />
         <ClickableField fieldName="linkedin" fieldType="p" defaultValue={linkedin} handleChange={this.handleFieldChange} />
-      </ContentSection>,
+      </SidebarSection>,
 
     ];
 
