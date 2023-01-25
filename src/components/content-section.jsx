@@ -15,6 +15,25 @@ class ContentSection extends Component {
     };
   }
 
+  componentDidMount() {
+    const { type, index } = this.props;
+    if (type === 'address-section') {
+      console.log('mount1');
+      this.handleAddressChange(index);
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    const { type, index } = this.props;
+    if (type === 'address-section') {
+      console.log('update');
+      if (prevProps.index === index) {
+        return;
+      }
+      this.handleAddressChange(index);
+    }
+  }
+
   handleEditableChange = (data, index) => {
     const { handleChange } = this.props;
     if (this.ref.current) {

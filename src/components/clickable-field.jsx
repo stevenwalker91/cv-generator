@@ -4,6 +4,13 @@ import React, { Component } from 'react';
 import '../App.css';
 
 class ClickableField extends Component {
+  static handleEnterKey = (event) => {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      event.target.blur();
+    }
+  };
+
   constructor(props) {
     super(props);
     const { defaultValue } = this.props;
@@ -27,13 +34,6 @@ class ClickableField extends Component {
     });
   };
 
-  static handleEnterKey = (event) => {
-    if (event.keyCode === 13) {
-      event.preventDefault();
-      event.target.blur();
-    }
-  };
-
   makeFieldEditable = () => {
     this.setState({
       isEditing: true,
@@ -54,7 +54,7 @@ class ClickableField extends Component {
               value={value}
               className={DynamicTag}
               name={fieldName}
-              onKeyUp={(event) => this.handleEnterKey(event)}
+              onKeyUp={(event) => ClickableField.handleEnterKey(event)}
               onChange={(event) => this.handleUpdate(event)}
               onBlur={(event) => this.handleLoseFocus(event)}
               autoFocus

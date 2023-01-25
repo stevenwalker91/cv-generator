@@ -117,9 +117,9 @@ class App extends Component {
       />,
       <ContentSection
         sectionTitle="Contact Details"
-        key={5}
+        key={3}
         updateSectionSize={this.updateSectionSize}
-        index={5}
+        index={3}
         type="address-section"
       >
         <ClickableField fieldName="phone" fieldType="p" defaultValue={phone} handleChange={this.handleFieldChange} />
