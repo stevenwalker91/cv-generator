@@ -5,13 +5,11 @@ import DisplayPicture from './display-picture';
 
 class Banner extends Component {
   constructor(props) {
-    super(props)
-
+    super(props);
+    this.state = {};
   }
 
   render() {
-
-
     return (
       <div className="outer-banner">
         <div id="banner">
@@ -22,8 +20,7 @@ class Banner extends Component {
           </div>
         </div>
       </div>
-
-    )
+    );
   }
 }
 

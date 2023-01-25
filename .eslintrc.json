@@ -12,7 +12,8 @@
     "overrides": [],
     "parserOptions": {
         "ecmaVersion": "latest",
-        "sourceType": "module"
+        "sourceType": "module",
+        "requireConfigFile": false
     },
     "plugins": [
         "react"
@@ -23,6 +24,13 @@
             2,
             {
                 "props": false
+            }
+        ],
+        "react/prop-types": 0,
+        "jsx-a11y/no-autofocus": [
+            2,
+            {
+                "ignoreNonDOM": true
             }
         ]
     }
