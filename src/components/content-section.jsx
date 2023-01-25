@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import '../App.css';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import InlineEditor from '@ckeditor/ckeditor5-build-inline';
-import LocalPhoneRoundedIcon from '@mui/icons-material';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 
 const editorConfig = {
   toolbar: ['undo', 'redo', '|', 'bold', 'italic', '|', 'bulletedList', 'numberedList'],
@@ -19,7 +20,6 @@ class ContentSection extends Component {
   componentDidMount() {
     const { type, index } = this.props;
     if (type === 'address-section') {
-      console.log('mount1');
       this.handleAddressChange(index);
     }
   }
@@ -27,7 +27,6 @@ class ContentSection extends Component {
   componentDidUpdate(prevProps) {
     const { type, index } = this.props;
     if (type === 'address-section') {
-      console.log('update');
       if (prevProps.index === index) {
         return;
       }
@@ -78,7 +77,7 @@ class ContentSection extends Component {
     const div = (
       <div className="sidebar-section" ref={this.ref} onChange={() => this.handleAddressChange(index)}>
         <h3>{sectionTitle}</h3>
-        <LocalPhoneRoundedIcon />
+        <FontAwesomeIcon icon={faCoffee} size="lg" />
         {children}
 
       </div>
