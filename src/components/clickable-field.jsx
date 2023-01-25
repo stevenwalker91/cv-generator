@@ -14,11 +14,9 @@ class ClickableField extends Component {
   constructor(props) {
     super(props);
     const { defaultValue } = this.props;
-
     this.state = {
-      value: defaultValue,
       isEditing: false,
-
+      value: defaultValue,
     };
   }
 
@@ -29,6 +27,11 @@ class ClickableField extends Component {
   };
 
   handleUpdate = (event) => {
+    const { handleChange, fieldName } = this.props;
+    if (handleChange) {
+      handleChange(event.target.value, fieldName);
+      return;
+    }
     this.setState({
       value: event.target.value,
     });
@@ -41,17 +44,27 @@ class ClickableField extends Component {
   };
 
   render() {
-    const { fieldName, fieldType } = this.props;
-    const { value, isEditing } = this.state;
+    const {
+      fieldName, fieldType, handleChange, defaultValue,
+    } = this.props;
+    const { isEditing, value } = this.state;
     const DynamicTag = fieldType;
 
     return (
       <div className="wrapper">
-        {!isEditing && <DynamicTag id={fieldName} onClick={(event) => this.makeFieldEditable(event)} className="updateableField">{value}</DynamicTag>}
+        {!isEditing && (
+          <DynamicTag
+            id={fieldName}
+            onClick={(event) => this.makeFieldEditable(event)}
+            className="updateableField"
+          >
+            {handleChange ? defaultValue : value}
+          </DynamicTag>
+        )}
         {
           isEditing && (
             <input
-              value={value}
+              defaultValue={handleChange ? defaultValue : value}
               className={DynamicTag}
               name={fieldName}
               onKeyUp={(event) => ClickableField.handleEnterKey(event)}
