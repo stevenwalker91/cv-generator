@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import '../App.css';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import InlineEditor from '@ckeditor/ckeditor5-build-inline';
+import LocalPhoneRoundedIcon from '@mui/icons-material';
 
 const editorConfig = {
   toolbar: ['undo', 'redo', '|', 'bold', 'italic', '|', 'bulletedList', 'numberedList'],
@@ -77,6 +78,7 @@ class ContentSection extends Component {
     const div = (
       <div className="sidebar-section" ref={this.ref} onChange={() => this.handleAddressChange(index)}>
         <h3>{sectionTitle}</h3>
+        <LocalPhoneRoundedIcon />
         {children}
 
       </div>
