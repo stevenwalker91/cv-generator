@@ -1,5 +1,7 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable new-cap */
 import React, { Component } from 'react';
+import html2canvas from 'html2canvas';
 import '../App.css';
 import { jsPDF } from 'jspdf';
 import { Secular, Montserrat } from '../assets/fonts';
@@ -14,21 +16,32 @@ class GeneratePDFButton extends Component {
     });
   };
 
-  constructor(props) {
-    super(props);
+  static sortSVG = async () => {
+    const canvas = document.querySelector('.to-print');
+    const screenWidth = parseFloat(window.getComputedStyle(canvas).width);
 
-    this.state = {
+    const problematic = document.querySelectorAll('.svg-inline--fa');
+    problematic.forEach((el) => {
+      html2canvas(
+        el,
+        {
+          scale: 2480 / screenWidth, // 2480px - size for A4 paper, 300 dpi
+        },
+      )
+        .then(() => {
+          const img = canvas.toDataURL('image/jpeg');
+          el.innerHTML = `<img src="${img}" class="img">`;
+        });
+    });
+  };
 
-    };
-  }
-
-  generatePDF = async () => {
+  static generatePDF = async () => {
     const doc = new jsPDF();
     doc.addFileToVFS('SecularOne-Regular.ttf', Secular);
     doc.addFileToVFS('Montserrat-Regular.ttf', Montserrat);
     doc.addFont('SecularOne-Regular.ttf', 'Secular One', 'normal');
     doc.addFont('Montserrat-Regular.ttf', 'Montserrat', 'normal');
-    this.toggleMargin();
+    GeneratePDFButton.toggleMargin();
     const app = document.getElementById('app');
 
     await doc.html(app, {
@@ -44,12 +57,20 @@ class GeneratePDFButton extends Component {
       },
 
     });
-    this.toggleMargin();
+    GeneratePDFButton.toggleMargin();
   };
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+
+    };
+  }
 
   render() {
     return (
-      <button type="button" onClick={() => this.generatePDF()}>Generate PDF</button>
+      <button type="button" onClick={() => GeneratePDFButton.generatePDF()}>Generate PDF</button>
     );
   }
 }

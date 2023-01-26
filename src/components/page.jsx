@@ -16,34 +16,20 @@ class Page extends Component {
     const {
       pageNumber,
       sidebarSections,
-      name,
-      role,
-      isNameEditing,
-      isRoleEditing,
-      makeFieldEditable,
-      handleLoseFocus,
-      handleUpdate,
-      handleEnterKey,
+      mainSections,
+      addSection,
     } = this.props;
 
     return (
       <div className="page">
         {pageNumber === 1 && (
-          <Banner
-            name={name}
-            role={role}
-            isNameEditing={isNameEditing}
-            isRoleEditing={isRoleEditing}
-            makeFieldEditable={makeFieldEditable}
-            handleLoseFocus={handleLoseFocus}
-            handleUpdate={handleUpdate}
-            handleEnterKey={handleEnterKey}
-          />
+          <Banner />
         )}
         <Sidebar page={pageNumber}>
           {sidebarSections}
         </Sidebar>
-        <Main page={pageNumber} />
+        <Main page={pageNumber} mainSections={mainSections} addSection={addSection} />
+
       </div>
     );
   }

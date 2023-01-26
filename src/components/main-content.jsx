@@ -10,13 +10,13 @@ class Main extends Component {
   }
 
   render() {
-    const { page, children } = this.props;
+    const { page, mainSections, addSection } = this.props;
     return (
       <div className={page === 1 ? 'main-content main-content-page-one' : 'main-content '}>
         <h3>Employment History</h3>
-        {children}
+        {mainSections}
+        <button type="button" className="add-section" onClick={() => addSection()}>Add role</button>
       </div>
-
     );
   }
 }

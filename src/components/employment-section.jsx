@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import '../App.css';
-import ClickableField from './clickable-field';
 
 class EmploymentSection extends Component {
   constructor(props) {
@@ -11,10 +10,10 @@ class EmploymentSection extends Component {
   }
 
   render() {
-    const { index } = this.props;
+    const { children } = this.props;
     return (
       <div className="employment-section">
-        <ClickableField fieldName="position-held" fieldType="h4" />
+        {children}
       </div>
     );
   }

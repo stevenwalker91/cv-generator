@@ -27,9 +27,10 @@ class ClickableField extends Component {
   };
 
   handleUpdate = (event) => {
-    const { handleChange, fieldName } = this.props;
+    const { handleChange, fieldName, employmentIndex } = this.props;
+
     if (handleChange) {
-      handleChange(event.target.value, fieldName);
+      handleChange(event.target.value, fieldName, employmentIndex);
       return;
     }
     this.setState({

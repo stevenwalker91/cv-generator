@@ -155,7 +155,8 @@
 
 h1,
 h2,
-h3 {
+h3,
+h4 {
   text-transform: uppercase;
 
 }
@@ -242,4 +243,30 @@ ul {
   width: 100%;
   padding: 2px;
   border: none;
+}
+
+.delete-section {
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0px 10px 10px 10px;
+  position: absolute;
+  left: 90%;
+  display: none;
+  font-size: 20px;
+
+
+}
+
+.delete-section:hover {
+  color: red;
+
+}
+
+.employment-section:hover .delete-section {
+  display: block
+}
+
+.add-section {
+  margin-top: 50px;
 }

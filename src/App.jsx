@@ -1,13 +1,18 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable consistent-return */
 /* eslint-disable array-callback-return */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable max-len */
 import React, { Component } from 'react';
 import './App.css';
-import GeneratePDFButton from './components/generate-pdf';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import SidebarSection from './components/content-section';
 import Page from './components/page';
 import ClickableField from './components/clickable-field';
+import EmploymentSection from './components/employment-section';
+import EmploymentSummary from './components/employment-summary';
+import GeneratePDFButton from './components/generate-pdf';
 
 class App extends Component {
   static pxToCm = (px) => {
@@ -27,7 +32,7 @@ class App extends Component {
       email: 'user@test.com',
       address: '26 Test Street, Testville, TT1 2DE',
       linkedin: 'linkedin.com/testuser',
-      employmentHistory: [],
+      employmentHistory: [{ positionheld: 'Product Owner', company: 'Acme Inc', summary: 'This is some text' }, { positionheld: 'Product Owner', company: 'Special Air Service', summary: 'this is some more text' }],
     };
   }
 
@@ -52,10 +57,30 @@ class App extends Component {
     this.updateSectionSize(index, height);
   };
 
-  handleFieldChange = (data, field) => {
-    this.setState({
-      [field]: data,
-    });
+  handleFieldChange = (data, field, employmentIndex) => {
+    if (employmentIndex >= 0) {
+      const { employmentHistory } = this.state;
+      const newEmploymentArray = employmentHistory.map((item, index) => {
+        if (index !== Number(employmentIndex)) {
+          return item;
+        }
+        if (index === Number(employmentIndex)) {
+          return {
+            ...item,
+            [field]: data,
+          };
+        }
+      });
+      this.setState({
+        employmentHistory: newEmploymentArray,
+      });
+    }
+
+    if (employmentIndex === undefined) {
+      this.setState({
+        [field]: data,
+      });
+    }
   };
 
   getSidebarBreakpoints = () => {
@@ -83,9 +108,30 @@ class App extends Component {
     return breakpoints;
   };
 
+  deleteSection = (sectionIndex) => {
+    const { employmentHistory } = this.state;
+    const updatedArray = employmentHistory.filter((item, index) => {
+      if (sectionIndex !== index) {
+        return item;
+      }
+    });
+    this.setState({
+      employmentHistory: updatedArray,
+    });
+  };
+
+  addSection = () => {
+    const { employmentHistory } = this.state;
+    const updatedArray = employmentHistory;
+    updatedArray.push({ positionheld: 'Job Role', company: 'Company | Date From - Date To', summary: 'Tell us more about the role' });
+    this.setState({
+      employmentHistory: updatedArray,
+    });
+  };
+
   render() {
     const {
-      sidebarSectionValues, phone, email, address, breakpoints, linkedin,
+      sidebarSectionValues, phone, email, address, breakpoints, linkedin, employmentHistory,
     } = this.state;
     const sidebarContentSections = [
       <SidebarSection
@@ -132,6 +178,38 @@ class App extends Component {
 
     ];
 
+    const mainSections = employmentHistory.map((item, index) => (
+      <EmploymentSection key={`${index}section`}>
+        <button type="button" className="delete-section" onClick={() => this.deleteSection(index)}>
+          <FontAwesomeIcon icon={faTrash} />
+        </button>
+        <ClickableField
+          fieldName="positionheld"
+          fieldType="h4"
+          employmentIndex={index}
+          defaultValue={item.positionheld}
+          handleChange={this.handleFieldChange}
+          key={`${index}position`}
+
+        />
+        <ClickableField
+          fieldName="company"
+          fieldType="h5"
+          employmentIndex={index}
+          defaultValue={item.company}
+          handleChange={this.handleFieldChange}
+          key={`${index}company`}
+        />
+        <EmploymentSummary
+          fieldName="summary"
+          employmentIndex={index}
+          defaultValue={item.summary}
+          handleChange={this.handleFieldChange}
+          key={`${index}summary`}
+        />
+      </EmploymentSection>
+    ));
+
     const pages = breakpoints.map((breakpoint, index) => {
       const start = breakpoint;
 
@@ -145,6 +223,8 @@ class App extends Component {
           key={index + 1}
           pageNumber={index + 1}
           sidebarSections={sidebarContentSections.filter((section) => section.props.index >= start && section.props.index < end)}
+          mainSections={mainSections}
+          addSection={this.addSection}
         />
       );
     });
