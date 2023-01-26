@@ -26,16 +26,6 @@ class SidebarSection extends Component {
     }
   }
 
-  componentDidUpdate(prevProps) {
-    const { type, index } = this.props;
-    if (type === 'address-section') {
-      if (prevProps.index === index) {
-        return;
-      }
-      this.handleAddressChange(index);
-    }
-  }
-
   handleEditableChange = (data, index) => {
     const { handleChange } = this.props;
     if (this.ref.current) {
@@ -46,7 +36,7 @@ class SidebarSection extends Component {
   handleAddressChange = (index) => {
     const { updateSectionSize } = this.props;
     if (this.ref.current) {
-      updateSectionSize(index, this.ref.current.clientHeight);
+      updateSectionSize(index, this.ref.current.clientHeight, 'sidebar');
     }
   };
 

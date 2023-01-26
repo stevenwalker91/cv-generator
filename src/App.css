@@ -247,20 +247,23 @@ ul {
 
 .delete-section {
   border: none;
-  background: none;
   cursor: pointer;
-  padding: 0px 10px 10px 10px;
+  padding: 10px 10px 10px 10px;
   position: absolute;
   left: 90%;
   display: none;
-  font-size: 20px;
-
-
+  font-size: 15px;
+  border-radius: 5px;
+  background-color: var(--accent-color);
+  color: red;
+  background-color: white;
+  border: 1px solid red;
 }
 
 .delete-section:hover {
-  color: red;
-
+  box-shadow: 3px 3px 6px 0px rgb(0 0 0 / 25%);
+  color: white;
+  background-color: red;
 }
 
 .employment-section:hover .delete-section {

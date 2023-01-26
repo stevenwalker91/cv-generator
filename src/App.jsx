@@ -24,26 +24,37 @@ class App extends Component {
     super(props);
     this.state = {
       sidebarSectionHeights: {},
+      mainSectionHeights: {},
       breakpoints: [0],
+      mainBreakpoints: [0],
       sidebarSectionValues: {
-        0: 'Steven', 1: 'Test', 2: '', 3: '',
+        0: 'Steven', 1: 'Test', 2: 'Test',
       },
       phone: '077123456122',
       email: 'user@test.com',
       address: '26 Test Street, Testville, TT1 2DE',
       linkedin: 'linkedin.com/testuser',
-      employmentHistory: [{ positionheld: 'Product Owner', company: 'Acme Inc', summary: 'This is some text' }, { positionheld: 'Product Owner', company: 'Special Air Service', summary: 'this is some more text' }],
+      employmentHistory: [{ positionheld: 'Cartoon', company: 'Acme Inc | 2020 - Present', summary: 'This is some text' }, { positionheld: 'Commando', company: 'Special Air Service | 1990 - 2019', summary: 'this is some more text' }],
     };
   }
 
-  updateSectionSize = (index, size) => {
-    const breaks = this.getSidebarBreakpoints();
+  updateSectionSize = (index, size, side) => {
+    let sectionHeights = {};
+    let breaksList;
+    const { sidebarSectionHeights, mainSectionHeights } = this.state;
+
+    if (side === 'sidebar') {
+      sectionHeights = { ...sidebarSectionHeights, [index]: App.pxToCm(size) };
+      breaksList = 'breakpoints';
+    } else if (side === 'main') {
+      sectionHeights = { ...mainSectionHeights, [index]: App.pxToCm(size) };
+      breaksList = 'mainBreakpoints';
+    }
+    const breaks = this.getBreakpoints(side);
+
     this.setState((prevState) => ({
-      sidebarSectionHeights: {
-        ...prevState.sidebarSectionHeights,
-        [index]: App.pxToCm(size),
-      },
-      breakpoints: breaks,
+      [`${side}SectionHeights`]: { ...prevState[`${side}SectionHeights`], [index]: App.pxToCm(size) },
+      [breaksList]: breaks,
     }));
   };
 
@@ -54,7 +65,7 @@ class App extends Component {
         [index]: data,
       },
     }));
-    this.updateSectionSize(index, height);
+    this.updateSectionSize(index, height, 'sidebar');
   };
 
   handleFieldChange = (data, field, employmentIndex) => {
@@ -83,26 +94,35 @@ class App extends Component {
     }
   };
 
-  getSidebarBreakpoints = () => {
+  getBreakpoints = (section) => {
     let allowedHeight = 0;
     let page = 1;
-    const { sidebarSectionHeights } = this.state;
+    let sectionHeights = {};
+    const { sidebarSectionHeights, mainSectionHeights } = this.state;
+
+    if (section === 'sidebar') {
+      sectionHeights = sidebarSectionHeights;
+    }
+
+    if (section === 'main') {
+      sectionHeights = mainSectionHeights;
+    }
 
     const breakpoints = [0];
 
     let totalHeight = 0;
 
-    Object.keys(sidebarSectionHeights).forEach((item, index) => {
+    Object.keys(sectionHeights).forEach((item, index) => {
       if (page === 1) {
         allowedHeight = 20; // 23
       } else {
         allowedHeight = 25;
       }
-      totalHeight += sidebarSectionHeights[item];
+      totalHeight += sectionHeights[item];
       if (totalHeight >= allowedHeight) {
         breakpoints.push(Number(index));
         page += 1;
-        totalHeight = 0;
+        totalHeight = sectionHeights[item];
       }
     });
     return breakpoints;
@@ -131,12 +151,13 @@ class App extends Component {
 
   render() {
     const {
-      sidebarSectionValues, phone, email, address, breakpoints, linkedin, employmentHistory,
+      sidebarSectionValues, phone, email, address, breakpoints, linkedin, employmentHistory, mainBreakpoints,
     } = this.state;
     const sidebarContentSections = [
       <SidebarSection
         sectionTitle="Personal Summary"
         defaultValue={sidebarSectionValues[0]}
+        id="summary-content"
         key={0}
         updateSectionSize={this.updateSectionSize}
         index={0}
@@ -179,7 +200,7 @@ class App extends Component {
     ];
 
     const mainSections = employmentHistory.map((item, index) => (
-      <EmploymentSection key={`${index}section`}>
+      <EmploymentSection key={`${index}section`} updateSectionSize={this.updateSectionSize} index={index}>
         <button type="button" className="delete-section" onClick={() => this.deleteSection(index)}>
           <FontAwesomeIcon icon={faTrash} />
         </button>
@@ -209,6 +230,9 @@ class App extends Component {
         />
       </EmploymentSection>
     ));
+
+    const numberOfPages = Math.max(breakpoints.length, mainBreakpoints.length);
+
 
     const pages = breakpoints.map((breakpoint, index) => {
       const start = breakpoint;
