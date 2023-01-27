@@ -2,6 +2,7 @@
   "name": "cv-app",
   "version": "0.1.0",
   "private": true,
+  "homepage": "cv.steven-walker.co.uk",
   "dependencies": {
     "@ckeditor/ckeditor5-build-balloon": "35.4.0",
     "@ckeditor/ckeditor5-build-inline": "35.4.0",
@@ -25,7 +26,9 @@
     "start": "ESLINT_NO_DEV_ERRORS='true' react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -51,6 +54,7 @@
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-prettier": "8.6.0",
     "eslint-plugin-react": "7.32.0",
+    "gh-pages": "5.0.0",
     "prettier": "2.8.3"
   }
 }
