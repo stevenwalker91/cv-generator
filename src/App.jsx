@@ -148,7 +148,7 @@ class App extends Component {
     this.setState({
       mainBreakpoints: breaks,
     });
-  }
+  };
 
   addSection = () => {
     const { employmentHistory } = this.state;

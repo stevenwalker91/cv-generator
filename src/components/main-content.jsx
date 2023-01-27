@@ -10,7 +10,9 @@ class Main extends Component {
   }
 
   render() {
-    const { page, mainSections, addSection, totalPageCount } = this.props;
+    const {
+      page, mainSections, addSection, totalPageCount,
+    } = this.props;
     return (
       <div className={page === 1 ? 'main-content main-content-page-one' : 'main-content '}>
         {page === 1 && <h3>Employment History</h3>}
