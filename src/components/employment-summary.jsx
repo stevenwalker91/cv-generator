@@ -25,9 +25,8 @@ class EmploymentSummary extends Component {
           editor={InlineEditor}
           config={editorConfig}
           data={defaultValue}
-          onReady={(editor) => {
-            const data = editor.getData();
-            handleChange(data, fieldName, employmentIndex);
+          onReady={() => {
+            handleChange(defaultValue, fieldName, employmentIndex);
           }}
           onChange={(event, editor) => {
             const data = editor.getData();
