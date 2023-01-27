@@ -18,6 +18,7 @@ class Page extends Component {
       sidebarSections,
       mainSections,
       addSection,
+      totalPageCount,
     } = this.props;
 
     return (
@@ -28,7 +29,12 @@ class Page extends Component {
         <Sidebar page={pageNumber}>
           {sidebarSections}
         </Sidebar>
-        <Main page={pageNumber} mainSections={mainSections} addSection={addSection} />
+        <Main
+          page={pageNumber}
+          mainSections={mainSections}
+          addSection={addSection}
+          totalPageCount={totalPageCount}
+        />
 
       </div>
     );

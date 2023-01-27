@@ -10,11 +10,6 @@ class EmploymentSection extends Component {
     };
   }
 
-  componentDidMount() {
-    const { index } = this.props;
-    this.handleChange(index);
-  }
-
   componentDidUpdate() {
     const { index } = this.props;
     const { height } = this.state;

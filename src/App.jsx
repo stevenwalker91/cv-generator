@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable consistent-return */
 /* eslint-disable array-callback-return */
@@ -129,16 +130,25 @@ class App extends Component {
   };
 
   deleteSection = (sectionIndex) => {
-    const { employmentHistory } = this.state;
+    const { employmentHistory, mainSectionHeights, mainBreakpoints } = this.state;
     const updatedArray = employmentHistory.filter((item, index) => {
       if (sectionIndex !== index) {
         return item;
       }
     });
+    const { [sectionIndex]: updatedHeights } = mainSectionHeights;
     this.setState({
       employmentHistory: updatedArray,
-    });
+      mainSectionHeights: updatedHeights,
+    }, this.resetMainBreaks);
   };
+
+  resetMainBreaks = () => {
+    const breaks = this.getBreakpoints('main');
+    this.setState({
+      mainBreakpoints: breaks,
+    });
+  }
 
   addSection = () => {
     const { employmentHistory } = this.state;
@@ -232,27 +242,34 @@ class App extends Component {
     ));
 
     const numberOfPages = Math.max(breakpoints.length, mainBreakpoints.length);
+    const pages = [];
 
-
-    const pages = breakpoints.map((breakpoint, index) => {
-      const start = breakpoint;
-
-      let end = breakpoints[index + 1];
-      if (!end) {
-        end = breakpoint + 10;
+    for (let i = 0; i < numberOfPages; i += 1) {
+      const sideStart = breakpoints[i];
+      let sideEnd = breakpoints[i + 1];
+      if (!sideEnd) {
+        sideEnd = i + 10;
       }
 
-      return (
-        <Page
-          key={index + 1}
-          pageNumber={index + 1}
-          sidebarSections={sidebarContentSections.filter((section) => section.props.index >= start && section.props.index < end)}
-          mainSections={mainSections}
-          addSection={this.addSection}
-        />
-      );
-    });
+      const mainStart = mainBreakpoints[i];
+      let mainEnd = mainBreakpoints[i + 1];
+      if (!mainEnd) {
+        mainEnd = i + 10;
+      }
 
+      const sidebarSections = sidebarContentSections.filter((section, index) => index >= sideStart && index < sideEnd);
+      const mainSects = mainSections.filter((section, index) => index >= mainStart && index < mainEnd);
+      pages.push(
+        <Page
+          key={i + 1}
+          pageNumber={i + 1}
+          sidebarSections={sidebarSections}
+          mainSections={mainSects}
+          addSection={this.addSection}
+          totalPageCount={numberOfPages}
+        />,
+      );
+    }
     return (
 
       <div>
