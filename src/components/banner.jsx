@@ -16,7 +16,7 @@ class Banner extends Component {
           <DisplayPicture />
           <div id="name-container">
             <ClickableField fieldName="name" fieldType="h1" defaultValue="Hamish Walker" />
-            <ClickableField fieldName="role" fieldType="h2" defaultValue="Loyal Companion" />
+            <ClickableField fieldName="role" fieldType="h2" defaultValue="Best Friend & Loyal Companion" />
           </div>
         </div>
       </div>
