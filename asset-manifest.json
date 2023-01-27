@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/cv.steven-walker.co.uk/static/css/main.600ba94a.css",
-    "main.js": "/cv.steven-walker.co.uk/static/js/main.d273826b.js",
-    "static/media/hamish.jpg": "/cv.steven-walker.co.uk/static/media/hamish.8b4d13251bb45cc5a261.jpg",
-    "index.html": "/cv.steven-walker.co.uk/index.html",
-    "main.600ba94a.css.map": "/cv.steven-walker.co.uk/static/css/main.600ba94a.css.map",
-    "main.d273826b.js.map": "/cv.steven-walker.co.uk/static/js/main.d273826b.js.map"
+    "main.css": "/repository-name/static/css/main.600ba94a.css",
+    "main.js": "/repository-name/static/js/main.d637d2fa.js",
+    "static/media/hamish.jpg": "/repository-name/static/media/hamish.8b4d13251bb45cc5a261.jpg",
+    "index.html": "/repository-name/index.html",
+    "main.600ba94a.css.map": "/repository-name/static/css/main.600ba94a.css.map",
+    "main.d637d2fa.js.map": "/repository-name/static/js/main.d637d2fa.js.map"
   },
   "entrypoints": [
     "static/css/main.600ba94a.css",
-    "static/js/main.d273826b.js"
+    "static/js/main.d637d2fa.js"
   ]
 }
