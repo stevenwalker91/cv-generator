@@ -29,13 +29,15 @@ class App extends Component {
       breakpoints: [0],
       mainBreakpoints: [0],
       sidebarSectionValues: {
-        0: 'Steven', 1: 'Test', 2: 'Test',
+        0: '<p>I am Hamish, a driven and enthusiastic pooch with 4 years of experience in delighting hoomans across Carnoustie.&nbsp;</p><p>&nbsp;</p><p>I am very curious with an excellent sense of smell, and delight in causing mischief. I have a proven track record in delivering smiles bringing my hugs and love to the fore.&nbsp;</p><p>&nbsp;</p><p>I am passionate about creating happiness in the world and am seeking further opportunities to play, love and bark.</p>',
+        1: '<ul><li>Finding socks, no matter how well theyre hidden</li><li>Chasing birds &amp; squirrels</li><li>Doing the “<strong>bang</strong>” trick</li><li>Cuddling in bed</li><li>Cuddling on the sofa</li><li>Cuddling anywhere else</li><li>Making friends</li><li>Chewing up tissues</li></ul>',
+        2: '<p>I dont have formal creds as such, but my learning involves:</p><p>&nbsp;</p><ul><li>Toilet trained - I never go indoors!</li><li>I can do a sit, down, bang, touch and paw, but youve gotta make it worth my while</li><li>Vicki spent a lot of time with me desensitising me to grooming, so now I dont even find it that bad</li></ul>',
       },
       phone: '077123456122',
-      email: 'user@test.com',
-      address: '26 Test Street, Testville, TT1 2DE',
-      linkedin: 'linkedin.com/testuser',
-      employmentHistory: [{ positionheld: 'Cartoon', company: 'Acme Inc | 2020 - Present', summary: 'This is some text' }, { positionheld: 'Commando', company: 'Special Air Service | 1990 - 2019', summary: 'this is some more text' }],
+      email: 'hamishpaws@bark.com',
+      address: 'Carnoustie, DD7',
+      linkedin: 'linkedin.com/hamishpaws',
+      employmentHistory: [{ positionheld: 'Junior Family Member', company: 'Nyree & Steven Inc. | 2020 - Present', summary: 'This is some text' }, { positionheld: 'New Born Pup', company: 'My Breeders Family Ltd. | 2019 - 2019', summary: 'this is some more text' }],
     };
   }
 
@@ -54,7 +56,7 @@ class App extends Component {
     const breaks = this.getBreakpoints(side);
 
     this.setState((prevState) => ({
-      [`${side}SectionHeights`]: { ...prevState[`${side}SectionHeights`], [index]: App.pxToCm(size) },
+      [`${side}SectionHeights`]: { ...prevState[`${side}SectionHeights`], [index]: App.pxToCm(size + 40) },
       [breaksList]: breaks,
     }));
   };
@@ -115,7 +117,7 @@ class App extends Component {
 
     Object.keys(sectionHeights).forEach((item, index) => {
       if (page === 1) {
-        allowedHeight = 20; // 23
+        allowedHeight = 18; // 23
       } else {
         allowedHeight = 25;
       }
@@ -185,16 +187,6 @@ class App extends Component {
         type="editable-section"
       />,
       <SidebarSection
-        sectionTitle="Accreditation"
-        defaultValue={sidebarSectionValues[2]}
-        id="summaryContent"
-        key={2}
-        updateSectionSize={this.updateSectionSize}
-        index={2}
-        handleChange={this.handleSectionChange}
-        type="editable-section"
-      />,
-      <SidebarSection
         sectionTitle="Contact Details"
         key={3}
         updateSectionSize={this.updateSectionSize}
@@ -206,6 +198,16 @@ class App extends Component {
         <ClickableField fieldName="address" fieldType="p" defaultValue={address} handleChange={this.handleFieldChange} />
         <ClickableField fieldName="linkedin" fieldType="p" defaultValue={linkedin} handleChange={this.handleFieldChange} />
       </SidebarSection>,
+      <SidebarSection
+        sectionTitle="Education"
+        defaultValue={sidebarSectionValues[2]}
+        id="summaryContent"
+        key={2}
+        updateSectionSize={this.updateSectionSize}
+        index={2}
+        handleChange={this.handleSectionChange}
+        type="editable-section"
+      />,
 
     ];
 
@@ -248,13 +250,13 @@ class App extends Component {
       const sideStart = breakpoints[i];
       let sideEnd = breakpoints[i + 1];
       if (!sideEnd) {
-        sideEnd = i + 10;
+        sideEnd = i + 100;
       }
 
       const mainStart = mainBreakpoints[i];
       let mainEnd = mainBreakpoints[i + 1];
       if (!mainEnd) {
-        mainEnd = i + 10;
+        mainEnd = i + 100;
       }
 
       const sidebarSections = sidebarContentSections.filter((section, index) => index >= sideStart && index < sideEnd);
