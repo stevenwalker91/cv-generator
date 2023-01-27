@@ -36,6 +36,8 @@ class GeneratePDFButton extends Component {
   };
 
   static generatePDF = async () => {
+    window.print();
+    /* THIS STUFF BELOWIS BROKE BECAUSE OF THE SVGS
     const doc = new jsPDF();
     doc.addFileToVFS('SecularOne-Regular.ttf', Secular);
     doc.addFileToVFS('Montserrat-Regular.ttf', Montserrat);
@@ -60,6 +62,8 @@ class GeneratePDFButton extends Component {
 
     });
     GeneratePDFButton.toggleMargin();
+
+    */
   };
 
   constructor(props) {
