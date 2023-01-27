@@ -154,7 +154,7 @@
 }
 
 .employment-section {
-  margin-bottom: 40px;
+  padding-bottom: 40px;
 }
 
 h1,
@@ -214,8 +214,9 @@ h4,
 
 h5,
 .h5 {
-  margin-top: 5px;
-  margin-bottom: 15px;
+  margin: 0px;
+  padding-top: 5px;
+  padding-bottom: 15px;
   width: 100%;
   background: none;
   border: none;

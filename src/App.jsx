@@ -56,7 +56,7 @@ class App extends Component {
     const breaks = this.getBreakpoints(side);
 
     this.setState((prevState) => ({
-      [`${side}SectionHeights`]: { ...prevState[`${side}SectionHeights`], [index]: App.pxToCm(size + 40) },
+      [`${side}SectionHeights`]: { ...prevState[`${side}SectionHeights`], [index]: App.pxToCm(size) },
       [breaksList]: breaks,
     }));
   };
@@ -117,7 +117,7 @@ class App extends Component {
 
     Object.keys(sectionHeights).forEach((item, index) => {
       if (page === 1) {
-        allowedHeight = 18; // 23
+        allowedHeight = 21; // 23
       } else {
         allowedHeight = 25;
       }
@@ -138,7 +138,7 @@ class App extends Component {
         return item;
       }
     });
-    const { [sectionIndex]: updatedHeights } = mainSectionHeights;
+    const { [sectionIndex]: remove, ...updatedHeights } = mainSectionHeights;
     this.setState({
       employmentHistory: updatedArray,
       mainSectionHeights: updatedHeights,
@@ -158,7 +158,7 @@ class App extends Component {
     updatedArray.push({ positionheld: 'Job Role', company: 'Company | Date From - Date To', summary: 'Tell us more about the role' });
     this.setState({
       employmentHistory: updatedArray,
-    });
+    }, this.resetMainBreaks);
   };
 
   render() {
