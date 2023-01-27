@@ -14,8 +14,8 @@
   display: grid;
   width: 21cm;
   min-width: 21cm;
-  min-height: 29.685cm;
-  max-height: 29.685cm;
+  min-height: 29.63cm;
+  max-height: 29.63cm;
   grid-template-columns: 45% 55%;
   grid-template-rows: 20% 80%;
   position: relative;
@@ -307,4 +307,21 @@ ul {
 
 .employment-section:hover .delete-section {
   display: block
+}
+
+@media print {
+
+  button {
+    display: none;
+  }
+
+  .page {
+    margin: 0px;
+    box-shadow: none;
+  }
+
+  #root {
+    margin: 0px;
+  }
+
 }
