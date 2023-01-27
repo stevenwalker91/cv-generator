@@ -37,7 +37,7 @@ class App extends Component {
       email: 'hamishpaws@bark.com',
       address: 'Carnoustie, DD7',
       linkedin: 'linkedin.com/hamishpaws',
-      employmentHistory: [{ positionheld: 'Junior Family Member', company: 'Nyree & Steven Inc. | 2020 - Present', summary: 'This is some text' }, { positionheld: 'New Born Pup', company: 'My Breeders Family Ltd. | 2019 - 2019', summary: 'this is some more text' }],
+      employmentHistory: [{ positionheld: 'Junior Family Member', company: 'Nyree & Steven Inc. | 2019 - Present', summary: '<p>I moved into my new home in 2019 and I\'ve been here ever since. I live in Carnoustie and I\'ve made tonnes of friends. I used to love going round to the park to play with the other doggos, but I got a bit too territorial in the park (it\'s one of my skills!) so Dad had to start taking me along the country path.</p><p>&nbsp;</p><p>I\'m a joy to have around the house and I\'m awesome at finding stuff. Mum &amp; Dad always try to hide all the socks (they\'re silly) - but I always find them!!&nbsp;' }, { positionheld: 'New Born Pup', company: 'My Breeders Family Ltd. | 2019', summary: '<p>I was born in Dundee and couldnt really see for the first while. I was with my brother and two sisters, they\'re all the same age as me.&nbsp;</p><p>&nbsp;</p><p>I spent the first little while exploring around the house and getting to know my dog family. My mum is a cocker spaniel called Molly from Ireland and my Dad is a poodle called Ocito from Spain.</p><p>&nbsp;</p><p>I had lots of fun with my doggo family, but eventually my new Mum and Dad came and took me to my forever home.</p>' }],
     };
   }
 
