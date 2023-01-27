@@ -3,8 +3,8 @@
 import React, { Component } from 'react';
 import html2canvas from 'html2canvas';
 import '../App.css';
-import { jsPDF } from 'jspdf';
-import { Secular, Montserrat, Lato } from '../assets/fonts';
+// import { jsPDF } from 'jspdf';
+// import { Secular, Montserrat, Lato } from '../assets/fonts';
 
 class GeneratePDFButton extends Component {
   // hacky approach to manually remove the margin between pages when generating PDF
