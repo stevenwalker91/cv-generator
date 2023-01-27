@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import html2canvas from 'html2canvas';
 import '../App.css';
 import { jsPDF } from 'jspdf';
-import { Secular, Montserrat } from '../assets/fonts';
+import { Secular, Montserrat, Lato } from '../assets/fonts';
 
 class GeneratePDFButton extends Component {
   // hacky approach to manually remove the margin between pages when generating PDF
@@ -39,8 +39,10 @@ class GeneratePDFButton extends Component {
     const doc = new jsPDF();
     doc.addFileToVFS('SecularOne-Regular.ttf', Secular);
     doc.addFileToVFS('Montserrat-Regular.ttf', Montserrat);
+    doc.addFileToVFS('Lato-Regular.ttf', Lato);
     doc.addFont('SecularOne-Regular.ttf', 'Secular One', 'normal');
     doc.addFont('Montserrat-Regular.ttf', 'Montserrat', 'normal');
+    doc.addFont('Lato-Regular.ttf', 'Lato', 'normal');
     GeneratePDFButton.toggleMargin();
     const app = document.getElementById('app');
 
